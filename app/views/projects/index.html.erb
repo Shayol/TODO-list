@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+    <% @projects.each do |project| %>
+      <div class="project_<%= project.id %>" >
+        <p id="project-title"><strong><%= project.title %></strong></p>
+        <%= link_to 'Edit', edit_project_path(project), remote: true %>
+        <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= form_for ([project, project.tasks.build]) do |f| %>
+            <div class="field">
+            <%= f.text_field :content %>
+            </div>
+            <div class="actions">
+            <%= f.submit %>
+            </div>
+          <% end %>
+          <% project.tasks.each do |task| %>
+            <div class="task_row_<%= task.id %>">
+            <p><i><%= task.content %><%= task.id %></i></p>
+            <%= link_to "Delete", url_for([project, task]), method: :delete, remote: true, data: { confirm: 'Are you sure?' } %>
+            </div>
+          <% end %>
+        </div>
+    <% end %>
+
+<br>
+
+<%= link_to "Add TODO list", new_project_path %>
