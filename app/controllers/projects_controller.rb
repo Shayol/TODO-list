@@ -17,12 +17,12 @@ before_filter :find_project,  only: [:show, :edit, :update, :destroy]
   def create
     @project = Project.new(project_params)
     respond_to do |format|
-    if @project.save
-      format.html { redirect_to root_path, notice: 'Project was successfully created.' }
-      format.js
-    else
-      format.html { render root_path }
-      format.js
+      if @project.save
+        format.html { redirect_to root_path, notice: 'Project was successfully created.' }
+        format.js
+      else
+        format.html { render root_path }
+      end
     end
   end
 
@@ -32,18 +32,24 @@ before_filter :find_project,  only: [:show, :edit, :update, :destroy]
   def update
     if @project.update(project_params)
       flash[:success] = "project updated!"
-      redirect_to @project
+      respond_to do |format|
+        format.html {redirect_to root_path}
+        format.js
+      end
     else
       flash.now[:danger] = "Incorrect input"
-      render 'edit'
+      render root_path
     end
   end
 
   def destroy
     @project.destroy
     flash[:info] = "project and all tasks to this project were deleted."
-    redirect_to root_path
- end
+    respond_to do |format|
+        format.html {redirect_to root_path}
+        format.js
+    end
+  end
 
 
 private

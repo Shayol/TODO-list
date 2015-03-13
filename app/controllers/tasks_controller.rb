@@ -7,18 +7,22 @@ before_filter :find_task,  only: [:show, :edit, :update, :destroy, :priority_up,
     @tasks = @project.tasks.all
   end
 
-  def new
-    @task = @project.tasks.new
-  end
+  #def new
+    #@task = @project.tasks.new
+  #end
 
   def create
     @task = @project.tasks.create task_params
     if @task.errors.any?
       flash[:danger] = "Something is wrong. Take a look at your input"
-      redirect_to root_path
+      render "projects/mistake"
     else
       priority = @project.tasks.pluck(:priority).last.to_i
-      @task.increment!(:priority, (priority+1)
+      if @project.tasks.count >= 2
+        @task.increment!(:priority, (priority+1))
+      else
+        @task.increment!(:priority)
+      end
       flash[:success] = "Task created!"
       redirect_to root_path
     end
@@ -38,9 +42,18 @@ before_filter :find_task,  only: [:show, :edit, :update, :destroy, :priority_up,
     @task.increment!(:priority)
   end
 
+  def edit
+  end
+
+  def update
+  end
+
   def destroy
     @task.destroy
-    redirect_to root_path
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.js
+    end
   end
 
   private
@@ -50,7 +63,7 @@ before_filter :find_task,  only: [:show, :edit, :update, :destroy, :priority_up,
   end
 
   def find_project
-    @project = Project.find(params[:id])
+    @project = Project.find(params[:project_id])
   end
 
   def task_params
