@@ -1,24 +1,40 @@
 <p id="notice"><%= notice %></p>
     <% @projects.each do |project| %>
-      <div class="project_<%= project.id %>" >
-        <p id="project-title"><strong><%= project.title %></strong></p>
-        <%= link_to 'Edit', edit_project_path(project), remote: true %>
-        <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %>
-          <%= form_for ([project, project.tasks.build]) do |f| %>
-            <div class="field">
-            <%= f.text_field :content %>
-            </div>
-            <div class="actions">
-            <%= f.submit %>
-            </div>
+    <table class="table table-hover" id="project_<%= project.id %>">
+      <tr>
+        <td id="project-title"><h3><%= project.title %></h3></td>
+        <td>
+          <%= link_to edit_project_path(project), remote: true do %>
+            <i class="fa fa-pencil"></i>
+          <% end %>|
+          <%= link_to project, method: :delete, data: { confirm: 'Are you sure?' }  do%>
+            <i class="fa fa-trash"></i>
           <% end %>
-          <% project.tasks.each do |task| %>
-            <div class="task_row_<%= task.id %>">
-            <p><i><%= task.content %><%= task.id %></i></p>
-            <%= link_to "Delete", url_for([project, task]), method: :delete, remote: true, data: { confirm: 'Are you sure?' } %>
-            </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= form_for ([project, project.tasks.build]), html: {class: "form-inline"} do |f| %>
+            <%= f.text_field :content, class: "form-control" %>
+        </td>
+        <td>
+            <%= f.submit "Add task", class: "btn btn-success" %>
           <% end %>
-        </div>
+        </td>
+      </tr>
+        <% project.tasks.each do |task| %>
+      <tr class="task_row_<%= task.id %>">
+        <td>
+            <i><%= task.content %></i>
+        </td>
+        <td>
+            |<%= link_to url_for([project, task]), method: :delete, remote: true, data: { confirm: 'Are you sure?' } do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+        </td>
+      </tr>
+          <% end %>
+    </table>
     <% end %>
 
 <br>
