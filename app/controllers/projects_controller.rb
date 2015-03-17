@@ -6,18 +6,14 @@ before_filter :find_project,  only: [:show, :edit, :update, :destroy]
     @project = Project.new
   end
 
-  def show
-    @tasks = @project.order('tasks.priority DESC').all
-  end
-
   def index
     @projects = Project.all
   end
 
   def create
-    @project = Project.new(project_params)
+    @project = Project.create(project_params)
     respond_to do |format|
-      if @project.save
+      if @project.errors.blank?
         format.html { redirect_to root_path, notice: 'Project was successfully created.' }
         format.js
       else

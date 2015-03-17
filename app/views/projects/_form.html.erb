@@ -1,4 +1,6 @@
-<div id="edit_project"><%= form_for(@project, remote: true, html: {class: "form-inline"}) do |f| %>
+<%= form_for(project, remote: true, html: {class: "form-inline"}) do |f| %>
+  <div class="row">
+  <div class="col-md-4 col-md-offset-2">
   <% if @project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -14,5 +16,7 @@
     <%= f.text_field :title, class: "form-control" %>
 
     <%= f.submit "Edit", class: "btn btn-default" %>
+  </div>
+  </div>
 <% end %>
-</div>
+

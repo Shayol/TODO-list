@@ -1,0 +1,2 @@
+$('#task_row_<%= @task.id %> .col-md-4').hide();
+$('#task_row_<%= @task.id %> .col-md-2').hide().after('<%= j render ("tasks/form") %>');
