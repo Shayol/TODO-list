@@ -1,51 +1,73 @@
 class TasksController < ApplicationController
 
-before_filter :find_project,  only: [:show, :edit, :update, :new, :create, :destroy, :index, :priority_up, :priority_down]
-before_filter :find_task,  only: [:show, :edit, :update, :destroy, :priority_up, :priority_down]
+before_filter :find_project
+before_filter :find_task,  except: [:create]
 
   def index
     @tasks = @project.tasks.all
   end
 
-  #def new
-    #@task = @project.tasks.new
-  #end
-
   def create
     @task = @project.tasks.create task_params
     if @task.errors.any?
       flash[:danger] = "Something is wrong. Take a look at your input"
-      render "projects/mistake"
+      render root_path
     else
-      priority = @project.tasks.pluck(:priority).last.to_i
-      if @project.tasks.count >= 2
-        @task.increment!(:priority, (priority+1))
-      else
-        @task.increment!(:priority)
-      end
+      lowest_priority = @project.tasks.pluck(:priority).max
+      @task.increment!(:priority, (lowest_priority+1))
       flash[:success] = "Task created!"
-      redirect_to root_path
+      end
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.js
     end
   end
 
   def priority_up
     priority = @task.priority
-    upper_task = @project.tasks.find_by priority: (priority-1)
-    upper_task.increment!(:priority)
-    @task.decrement!(:priority)
+    if priority > 1
+      upper_task = @project.tasks.find_by priority: (priority-1)
+      upper_task.increment!(:priority)
+      @task.decrement!(:priority)
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.js
+      end
+    else
+      redirect_to root_path, notice: "Ooops"
+    end
   end
 
   def priority_down
     priority = @task.priority
-    lower_task = @project.tasks.find_by priority: (priority+1)
-    lower_task.decrement!(:priority)
-    @task.increment!(:priority)
+    lowest_priority = @project.tasks.pluck(:priority).last.to_i
+    if priority < lowest_priority
+      lower_task = @project.tasks.find_by priority: (priority+1)
+      lower_task.decrement!(:priority)
+      @task.increment!(:priority)
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.js
+      end
+    else
+      render root_path
+    end
+  end
+
+  def task_completed
+    @task.completed == false ? @task.update_attribute(:completed, true) : @task.update_attribute(:completed, false)
+    redirect_to root_path, notice: "Task completed"
   end
 
   def edit
   end
 
   def update
+    @task.update_attributes! task_params
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.js
+    end
   end
 
   def destroy

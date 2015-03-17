@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   resources :projects do
-    resources :tasks
+    resources :tasks do
+      member do
+        patch :task_completed
+        patch :priority_up
+        patch :priority_down
+      end
+    end
   end
   root 'projects#index'
 
