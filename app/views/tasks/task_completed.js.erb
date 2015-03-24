@@ -1,0 +1,7 @@
+  $("#task_row_<%= @task.id %> i#checkbox").each(function(){
+      if($(this).hasClass('fa fa-square-o')){
+          $(this).removeClass('fa fa-square-o').addClass('fa fa-check-square-o');}
+      else {
+          $(this).removeClass('fa fa-check-square-o').addClass('fa fa-square-o');}
+          });
+

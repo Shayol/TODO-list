@@ -40,7 +40,7 @@ before_filter :find_task,  except: [:create]
 
   def priority_down
     priority = @task.priority
-    lowest_priority = @project.tasks.pluck(:priority).last.to_i
+    lowest_priority = @project.tasks.pluck(:priority).max
     if priority < lowest_priority
       lower_task = @project.tasks.find_by priority: (priority+1)
       lower_task.decrement!(:priority)
@@ -55,8 +55,11 @@ before_filter :find_task,  except: [:create]
   end
 
   def task_completed
-    @task.completed == false ? @task.update_attribute(:completed, true) : @task.update_attribute(:completed, false)
-    redirect_to root_path, notice: "Task completed"
+    @task.toggle!(:completed)
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.js
+    end
   end
 
   def edit

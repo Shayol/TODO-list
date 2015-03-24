@@ -1,26 +1,31 @@
       <div id="task_row_<%= task.id %>">
         <% if task.id %>
-          <% if task.completed == false then %>
             <div class="row" >
-          <% else %>
-            <div class="row" style="opacity: 0.5;">
-          <% end %>
           <div class="col-md-1 col-md-offset-2">
-            <%= link_to task_completed_project_task_path(project, task.id), method: :patch do %>
-              <i class="fa fa-check"></i>
+            <%= link_to task_completed_project_task_path(project, task.id), remote:true, method: :patch do %>
+              <% if task.completed == false then %>
+                <i class="fa fa-square-o" id="checkbox"></i>
+              <% else %>
+                <i class="fa fa-check-square-o" id="checkbox"></i>
+              <% end %>
             <% end %>
           </div>
           <div class="col-md-4">
-              <i><%= task.content %>--<%= task.priority %></i>
+              <i><%= task.content %></i>
           </div>
-          <div class="col-md-2">
-            <%= link_to priority_up_project_task_path(project, task.id), method: :patch do %>
-              <i class="fa fa-sort-asc"></i>
-            <% end %>
-            -
-            <%= link_to priority_down_project_task_path(project, task.id), method: :patch do %>
-              <i class="fa fa-sort-desc"></i>
-            <% end %>
+          <div class="col-md-1">
+            <span>
+              <%= link_to priority_up_project_task_path(project, task.id), method: :patch do %>
+                <i class="fa fa-sort-asc"></i>
+              <% end %>
+            </span>
+            <span>
+              <%= link_to priority_down_project_task_path(project, task.id), method: :patch do %>
+                <i class="fa fa-sort-desc"></i>
+              <% end %>
+            </span>
+            </div>
+          <div class="col-md-1">
             |<%= link_to edit_project_task_path(project, task), remote: true do %>
               <i class="fa fa-pencil"></i>
             <% end %>
