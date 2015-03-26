@@ -12,17 +12,37 @@
  *= require_tree
  *= require_self
  */
+
+$link-color: #999;
+$table-bg-hover:  #FCF8E3;
+$table-bg: white;
+$panel-border-radius: 12px !default;
+
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
-@import jquery.ui.core;
-@import jquery.ui.datepicker;
+@import "jquery.ui.core";
+@import "jquery.ui.datepicker";
+
+ tr:last-child > td {
+  border-bottom: 0;
+}
+
+
+.panel {
+margin-bottom: 80px;
+}
 
 span {
   position: absolute;
 }
 
-.col-md-1 {
+.priority {
   width:1px;
   white-space: nowrap;
+}
+
+#task_deadline {
+  font-size: 10px;
 }

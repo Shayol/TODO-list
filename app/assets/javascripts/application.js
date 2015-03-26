@@ -15,3 +15,6 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+jQuery ->
+  $('#task_deadline').datepicker
+    dateFormat: 'yy-mm-dd'
