@@ -12,37 +12,97 @@
  *= require_tree
  *= require_self
  */
-
+$border-radius-base: 0px !default;
 $link-color: #999;
-$table-bg-hover:  #FCF8E3;
-$table-bg: white;
-$panel-border-radius: 12px !default;
-
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
 @import "jquery.ui.core";
+@import "jquery.ui.theme";
 @import "jquery.ui.datepicker";
 
- tr:last-child > td {
-  border-bottom: 0;
+
+body {
+  background: rgba(235,233,249,1);
+  background: -moz-linear-gradient(top, rgba(235,233,249,1) 0%, rgba(216,208,239,1) 38%, rgba(206,199,236,1) 62%, rgba(193,191,234,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(235,233,249,1)), color-stop(38%, rgba(216,208,239,1)), color-stop(62%, rgba(206,199,236,1)), color-stop(100%, rgba(193,191,234,1)));
+  background: -webkit-linear-gradient(top, rgba(235,233,249,1) 0%, rgba(216,208,239,1) 38%, rgba(206,199,236,1) 62%, rgba(193,191,234,1) 100%);
+  background: -o-linear-gradient(top, rgba(235,233,249,1) 0%, rgba(216,208,239,1) 38%, rgba(206,199,236,1) 62%, rgba(193,191,234,1) 100%);
+  background: -ms-linear-gradient(top, rgba(235,233,249,1) 0%, rgba(216,208,239,1) 38%, rgba(206,199,236,1) 62%, rgba(193,191,234,1) 100%);
+  background: linear-gradient(to bottom, rgba(235,233,249,1) 0%, rgba(216,208,239,1) 38%, rgba(206,199,236,1) 62%, rgba(193,191,234,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebe9f9', endColorstr='#c1bfea', GradientType=0 );
+
+  font-size: 14px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+
 }
 
-
-.panel {
-margin-bottom: 80px;
+.equal > div[class*='col-'] {
+  height: 40px;
 }
 
-span {
-  position: absolute;
+[id*='task_row']:nth-last-child(2) [class*='col-'] {
+  border-bottom: 1px solid #ddd;
+  &:first-child {
+    border-bottom-left-radius: 10px;
+    }
+  &:last-child {
+    border-bottom-right-radius: 10px;
+    }
+  }
+
+#task_row_ {
+  margin-bottom: 70px;
 }
 
-.priority {
-  width:1px;
-  white-space: nowrap;
+div.project .row > [class*='col-'] {
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  background: #fff;
+  &:last-child {
+    border-right: 1px solid #ddd;
+  }
+}
+
+.project-title {
+  color: white;
+  font-size: 22px;
+}
+
+.equal .fa-pencil {
+  border-right: 1px solid #999;
+  padding-right: 5px;
+  margin-right: 0px;
+}
+
+.fa-pencil {
+  border-right: 1px solid #999;
+  padding-right: 5px;
+  margin-right: 0px;
+  border-left: 1px solid #999;
+  padding-left: 5px;
+  margin-left: 0px;
 }
 
 #task_deadline {
   font-size: 10px;
+  max-width: 60px;
+}
+
+div.col-md-6 + div.col-md-1 {
+  padding-left: 0px;
+}
+
+div.project i:not(#checkbox) {
+  opacity: 0;
+}
+
+div.project .row:hover > [class*='col-'] {
+  background-color: #FFF6EC;
+}
+
+div.project .row:hover i:not(#checkbox) {
+  opacity: 0.7;
 }

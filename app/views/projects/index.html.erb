@@ -3,14 +3,13 @@
     <div class="project" id="project_<%= project.id %>">
       <%= render partial: "project", locals: {project: project} %>
       <div class="row">
-        <div class="col-md-1 col-md-offset-2">
-          Plus sign
-        </div>
-        <div class="col-md-4">
+        <div class="col-md-6 col-md-offset-2">
           <%= form_for ([project, project.tasks.build]), remote: true, html: {class: "form-inline"} do |f| %>
+            <%= f.text_field :deadline, id: "task_deadline", placeholder: "YY-MM-DD" %>
+
             <%= f.text_field :content, class: "form-control", placeholder: "Start typing here to create a task" %>
-        </div>
-        <div class="col-md-2">
+            </div>
+        <div class="col-md-1">
             <%= f.submit "Add task", class: "btn btn-success" %>
           <% end %>
         </div>
@@ -18,12 +17,13 @@
         <% project.tasks.each do |task| %>
             <%= render partial: "tasks/task", locals: {project: project, task: task} %>
         <% end %>
-        <div id="tasks"></div>
     </div>
     <% end %>
 
   <div class="row">
-    <div class="col-md-3 col-md-offset-4">
-      <%= link_to "Add TODO list", new_project_path, id: "new_project_link", remote: true %>
+    <div class="col-md-5 col-md-offset-2">
+      <%= button_tag new_project_path, id: "new_project_link", remote: true, class: "btn btn-info btn-block" do %>
+        <i class="fa fa-plus" ></i> Add TODO list
+      <% end %>
     </div>
   </div>

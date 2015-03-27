@@ -17,7 +17,7 @@ before_filter :find_project,  only: [:show, :edit, :update, :destroy]
         format.html { redirect_to root_path, notice: 'Project was successfully created.' }
         format.js
       else
-        format.html { render root_path }
+        format.html { redirect_to root_path, notice: "Project wasn't created" }
       end
     end
   end

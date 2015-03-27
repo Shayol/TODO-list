@@ -1,1 +1,1 @@
-$('#project_<%= @project.id %> #tasks').append('<%= j render(partial: "tasks/task", locals: {project: @project, task: @task}) %>');
+$('#project_<%= @project.id %> #task_row_').append('<%= j render(partial: "tasks/task", locals: {project: @project, task: @task}) %>');

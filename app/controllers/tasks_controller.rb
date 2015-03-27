@@ -34,7 +34,7 @@ before_filter :find_task,  except: [:create]
         format.js
       end
     else
-      redirect_to root_path, notice: "Ooops"
+      redirect_to root_path
     end
   end
 
@@ -92,6 +92,6 @@ before_filter :find_task,  except: [:create]
   end
 
   def task_params
-    params.require(:task).permit(:content)
+    params.require(:task).permit(:content, :deadline)
   end
 end
