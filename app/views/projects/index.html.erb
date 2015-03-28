@@ -1,16 +1,17 @@
-<p id="notice"><%= notice %></p>
     <% @projects.each do |project| %>
     <div class="project" id="project_<%= project.id %>">
       <%= render partial: "project", locals: {project: project} %>
-      <div class="row">
-        <div class="col-md-6 col-md-offset-2">
-          <%= form_for ([project, project.tasks.build]), remote: true, html: {class: "form-inline"} do |f| %>
-            <%= f.text_field :deadline, id: "task_deadline", placeholder: "YY-MM-DD" %>
 
+          <%= form_for ([project, project.tasks.build]), remote: true, html: {class: "form-inline"} do |f| %>
+          <div class="row new-task">
+          <div class="col-md-1 col-md-offset-2">
+            <%= f.text_field :deadline, id: "task_deadline", placeholder: "YY-MM-DD" %>
+          </div>
+          <div class="col-md-5">
             <%= f.text_field :content, class: "form-control", placeholder: "Start typing here to create a task" %>
-            </div>
-        <div class="col-md-1">
-            <%= f.submit "Add task", class: "btn btn-success" %>
+          </div>
+        <div class="col-md-2">
+            <%= f.submit "Add task", class: "btn task" %>
           <% end %>
         </div>
       </div>
@@ -21,8 +22,8 @@
     <% end %>
 
   <div class="row">
-    <div class="col-md-5 col-md-offset-2">
-      <%= button_tag new_project_path, id: "new_project_link", remote: true, class: "btn btn-info btn-block" do %>
+    <div class="col-md-5 col-md-offset-4">
+      <%= link_to new_project_path, id: "new_project_link", remote: true, class: "btn project" do %>
         <i class="fa fa-plus" ></i> Add TODO list
       <% end %>
     </div>
