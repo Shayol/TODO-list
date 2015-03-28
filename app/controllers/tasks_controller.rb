@@ -84,11 +84,11 @@ before_filter :find_task,  except: [:create]
   private
 
   def find_task
-    @task = @project.tasks.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 
   def find_project
-    @project = Project.find(params[:project_id])
+    @project = current_user.projects.find(params[:project_id])
   end
 
   def task_params

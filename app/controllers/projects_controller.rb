@@ -7,11 +7,11 @@ before_filter :find_project,  only: [:show, :edit, :update, :destroy]
   end
 
   def index
-    @projects = Project.all
+    @projects = current_user.projects.all
   end
 
   def create
-    @project = Project.create(project_params)
+    @project = current_user.projects.create(project_params)
     respond_to do |format|
       if @project.errors.blank?
         format.html { redirect_to root_path, notice: 'Project was successfully created.' }
@@ -51,7 +51,7 @@ before_filter :find_project,  only: [:show, :edit, :update, :destroy]
 private
 
   def find_project
-    @project = Project.find(params[:id])
+    @project = current_user.projects.find(params[:id])
   end
 
   def project_params
