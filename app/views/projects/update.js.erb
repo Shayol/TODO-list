@@ -1,3 +1,2 @@
-$('#project_row_<%= @project.id %>').remove();
 $('#edit_project_<%= @project.id %>').after('<%= j render("project", project: @project) %>');
 $('#edit_project_<%= @project.id %>').remove();

@@ -14,8 +14,6 @@
  */
 
 
-$color: #96CDB0 !default;
-$border-radius-base: 0px !default;
 $link-color: #999;
 
 @import "bootstrap-sprockets";
@@ -41,8 +39,11 @@ body {
   margin-bottom: 10px;
 }
 
-h1, h4 {
+h1, h4, footer, .btn {
   text-align: center;
+}
+.user {
+  text-align: right;
 }
 
 .project-header > div[class*='col-'] {
@@ -53,8 +54,13 @@ h1, h4 {
     color: white;
     font-size: 22px;
   }
+  &:last-child {
+    text-align: right;
+    padding-right: 20px;
+    font-size: 15px;
+  }
   .fa-pencil {
-    border-right: 1px solid #999;
+    border-right: 1px solid #fff;
     padding-right: 5px;
     margin-right: 0px;
     color: #fff;
@@ -69,31 +75,33 @@ h1, h4 {
   background: #ccc;
   height: 50px;
   padding: 8px 0 10px 10px;
-  input[type="text"]:not(#task_deadline) {
+  &:last-child {
+    padding-left: 0px;
+    padding-right: 7px;
+  }
+}
+
+.edit-task div[class*='col-'] {
+  height: 50px;
+  padding: 8px 0 10px 10px;
+  &:last-child {
+    padding-left: 0px;
+    padding-right: 7px;
+  }
+}
+
+.new-task-input input[type="text"] {
     height: 30px;
-    color: #bbb;
+    width: 100%;
     background-color: #fff;
     box-shadow: inset 0 1px 2px 0 rgba(0,0,0,0.75);
     border: 0;
+    margin-right: 0px;
+    border-radius: 0px;
     outline: none;
   }
-  &:last-child {
-    padding-left: 0px;
-    .btn.task {
-      width: 108px;
-      height: 30px;
-      cursor: pointer;
-      font-size:14px;
-      color: #fff;
-      text-align:center;
-      text-shadow: 0 1px 0 #000;
-      border: 1px solid #447556;
-      border-radius: 0 5px 5px 0;
-      background: #4D8464;
-      background: linear-gradient(#73bd96 0%,#4D8464 97%);
-    }
-  }
-}
+
+
 
 [id*='task_row']:nth-last-child(2) [class*='col-'] {
   border-bottom: 1px solid #aaa;
@@ -119,6 +127,18 @@ div.project .row > [class*='col-'] {
   &:first-child {
     border-left: 1px solid #aaa;
   }
+  &.project-title {
+    border-left: 0px;
+    + [class*='col-'] {
+      border-left: 0px;
+    }
+  }
+  &.new-task-input {
+    border-left: 0px;
+     + [class*='col-'] {
+      border-left: 0px;
+    }
+  }
 }
 
 
@@ -131,10 +151,17 @@ div[id*='task_row'] .fa-pencil {
   margin-left: 0px;
 }
 
-#task_deadline {
-  font-size: 10px;
+.task-deadline {
+  font-size: 12px;
   max-width: 60px;
 }
+
+.deadline-formatted {
+  border-radius: 5px;
+  background: #ffff66;
+  text-align: right;
+}
+
 
 div.project i:not(#checkbox):not(.fa-calendar) {
   opacity: 0;
@@ -144,23 +171,39 @@ div.project div[id*='task_row'] .row:hover > [class*='col-'] {
   background-color: #FFF6EC;
 }
 
-div.project .row:hover i:not(#checkbox) {
-  opacity: 0.7;
+div.project .row:hover i:not(#checkbox):not(.fa-calendar) {
+  opacity: 0.6;
 }
 
 div[id*='task_row'] [class*='col-'] {
   background: #fff;
 }
 
+.btn.task {
+      width: 100%;
+      height: 30px;
+      cursor: pointer;
+      font-size:14px;
+      color: #fff;
+      text-shadow: 0 1px 0 #000;
+      border: 1px solid #447556;
+      border-radius: 0 5px 5px 0;
+      background: #4D8464;
+      background: linear-gradient(#73bd96 0%,#4D8464 97%);
+    }
 .btn.project {
-      width: 180px;
+      width: 100%;
       height: 50px;
       cursor: pointer;
       font-size:18px;
       color: #fff;
-      text-align:center;
       text-shadow: 0 1px 0 #000;
       border-radius: 2px 2px 2px 2px;
       background: #335791;
       background: linear-gradient(to bottom, #5689b6 0%,#335791 100%);
+      margin-bottom: 40px;
     }
+
+.priority {
+  display:inline-block;
+}

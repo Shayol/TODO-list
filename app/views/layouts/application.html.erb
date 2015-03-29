@@ -9,8 +9,9 @@
 <body>
   <div class="container">
     <%= render 'layouts/header' %>
-    <p class="notice"><%= notice %></p>
+    <%= render 'layouts/flash' %>
     <%= yield %>
+    <%= render 'layouts/footer' %>
   </div>
 </body>
 </html>
