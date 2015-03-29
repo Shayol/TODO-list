@@ -14,10 +14,10 @@ before_filter :find_project,  only: [:show, :edit, :update, :destroy]
     @project = current_user.projects.create(project_params)
     respond_to do |format|
       if @project.errors.blank?
-        format.html { redirect_to root_path, notice: 'Project was successfully created.' }
+        format.html { redirect_to root_path, flash[:success] = "Project created!" }
         format.js
       else
-        format.html { redirect_to root_path, notice: "Project wasn't created" }
+        format.html { render root_path, flash.now[:danger] = "Incorrect input" }
       end
     end
   end
@@ -27,7 +27,7 @@ before_filter :find_project,  only: [:show, :edit, :update, :destroy]
 
   def update
     if @project.update(project_params)
-      flash[:success] = "project updated!"
+      flash[:success] = "Project updated!"
       respond_to do |format|
         format.html {redirect_to root_path}
         format.js
@@ -40,7 +40,7 @@ before_filter :find_project,  only: [:show, :edit, :update, :destroy]
 
   def destroy
     @project.destroy
-    flash[:info] = "project and all tasks to this project were deleted."
+    flash[:info] = "Project and all tasks to this project were deleted."
     respond_to do |format|
         format.html {redirect_to root_path}
         format.js

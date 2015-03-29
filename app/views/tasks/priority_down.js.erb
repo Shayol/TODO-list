@@ -1,0 +1,2 @@
+$('#task_row_<%= @task.id %>').remove();
+$('#task_row_<%= @lower_task.id %>').after('<%= j render(partial: "tasks/task", locals: {project: @project, task: @task}) %>');
