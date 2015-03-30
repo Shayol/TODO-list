@@ -1,8 +1,8 @@
 class Task < ActiveRecord::Base
   belongs_to :project
-  validates :content, presence: true
+  validates :content, presence: true, uniqueness: { scope: :project_id }
 
-  default_scope -> { order('priority ASC') } #tasks retrieved in descending order from task with highest to lowest(1..lowest) priority
+  default_scope -> { order('priority ASC') }
 
   def deadline_formatted
     data = self.deadline.to_s
