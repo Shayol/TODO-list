@@ -34,7 +34,7 @@ before_filter :find_project,  only: [:show, :edit, :update, :destroy]
       end
     else
       flash.now[:danger] = "Incorrect input"
-      render root_path
+      redirect_to root_path
     end
   end
 

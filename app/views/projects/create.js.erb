@@ -1,0 +1,3 @@
+$('#new_project').remove();
+$('#new_project_link').show();
+$('.flash').after('<%= j render(partial: "projects/project", locals: {project: @project}) %>');
