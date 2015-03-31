@@ -1,4 +1,10 @@
 <%= form_for(@project, html: {class: "form-inline"}, remote: true) do |f| %>
-    <%= f.text_field :title, class: "form-control" %>
-    <%= f.submit "Create project", class: "btn btn-info" %>
+    <div class="row" >
+        <div class="col-md-8 offset-col-md-2">
+      <%= f.text_field :title, class: "form-control" %>
+      </div>
+      <div class="col-md-1">
+        <%= f.submit "Create project", class: "btn btn-info" %>
+      </div>
+    </div>
 <% end %>

@@ -81,8 +81,26 @@ footer {
 }
 
 // Project -- Header -- Edit form
-#project_title, .btn[value='Edit'] {
-  width: 100%;
+form[id*='edit_project'] div[class*='col-'] {
+  height: 50px;
+  padding-top: 7px;
+  &:not(:first-child) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  #project_title, .btn[value='Edit'] {
+    width: 100%;
+  }
+}
+
+// Project -- Create
+
+#new_project div[class*='col-'] {
+  padding-left: 0px;
+  padding-right: 0px;
+  #project_title, btn[value='Create project'] {
+    width: 100%;
+  }
 }
 
 // Task -- New task form
@@ -173,18 +191,22 @@ div.project .row > [class*='col-'] {
     border-left: 1px solid #aaa;
   }
   &.project-title {
-    border-left: 0px;
+    border-left: 0;
     + [class*='col-'] {
-      border-left: 0px;
+      border-left: 0;
     }
   }
+  &.edit_project {
+    border-top: 0;
+  }
   &.new-task-input {
-    border-left: 0px;
+    border-left: 0;
      + [class*='col-'] {
-      border-left: 0px;
+      border-left: 0;
     }
   }
 }
+
 // Icons and rows on Hover
 
 i:not(#checkbox):not(.fa-calendar) {
