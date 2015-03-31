@@ -8,9 +8,9 @@
 
 * Database SQLite3
 
-* Tests: Rspec, Factory_girl, Ffacker
+* Tests: Rspec, Factory_girl, Ffacker, Capybara, Selenium
 
-* Deployed on heroku
+* Deployed on heroku [*https://shayol-todo-list.herokuapp.com/*](https://shayol-todo-list.herokuapp.com/)
 
 
 
