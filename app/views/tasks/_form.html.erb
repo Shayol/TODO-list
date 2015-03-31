@@ -1,6 +1,6 @@
 <%= form_for([@project, @task ], remote: true) do |f| %>
 <div class="row edit-task">
-  <div class="col-md-1 col-md-offset-1">
+  <div class="col-md-2 col-md-offset-1">
     <%= f.text_field :deadline, class: "task_deadline", placeholder: "YY-MM-DD" %>
   </div>
   <div class="col-md-7 new-task-input">

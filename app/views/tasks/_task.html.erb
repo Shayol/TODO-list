@@ -1,7 +1,7 @@
       <div id="task_row_<%= task.id %>">
         <% if task.id %>
             <div class="row" >
-          <div class="col-md-1 col-md-offset-1">
+          <div class="col-md-2 col-md-offset-1">
             <%= link_to task_completed_project_task_path(project, task.id), remote:true, method: :patch do %>
               <% if task.completed == false then %>
                 <i class="fa fa-square-o" id="checkbox"></i>
@@ -21,7 +21,7 @@
               <%= link_to priority_down_project_task_path(project, task.id), method: :patch, remote: true do %>
                 <i class="fa fa-sort-desc"></i>
               <% end %>
-              <%= link_to edit_project_task_path(project, task), id: "edit_icon_task_<%= task.id %>", remote: true do %>
+              <%= link_to edit_project_task_path(project, task), remote: true do %>
                 <i class="fa fa-pencil"></i>
               <% end %>
               <%= link_to url_for([project, task]), method: :delete, remote: true, id: "delete_icon_task_<%= task.id %>", data: { confirm: 'Are you sure?' } do %>

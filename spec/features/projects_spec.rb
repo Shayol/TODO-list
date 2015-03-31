@@ -8,7 +8,7 @@ describe 'Projects' do
   describe 'Create', js: true do
     it 'creates new project' do
       click_on 'new_project_link'
-      fill_in 'project_title', with: "Allohomora!"
+      fill_in 'project_title', with: "Allohomora!"   #find edit_project_
       click_on 'Create project'
       expect(page).to have_content "Allohomora!"
     end
@@ -18,7 +18,7 @@ describe 'Projects' do
     it 'updates project' do
       project = create(:project, user: user)
       visit root_path
-      click_on 'edit_project'
+      find("#project_row_#{project.id}").find("a:first-of-type").click
       fill_in 'project_title', with: 'Beetle juice'
       click_on 'Edit'
       expect(page).to have_content 'Beetle juice'
@@ -29,8 +29,9 @@ describe 'Projects' do
     it 'deletes project' do
       project = create(:project, user: user)
       visit root_path
-      click_on 'delete_project'
-      page.driver.browser.switch_to.alert.accept
+      find("#project_row_#{project.id}").find("a[data-method='delete']").click
+      a = page.driver.browser.switch_to.alert
+      a.accept
       expect(page).not_to have_content project.title
     end
   end

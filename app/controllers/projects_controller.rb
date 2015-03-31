@@ -14,10 +14,12 @@ before_filter :find_project,  only: [:show, :edit, :update, :destroy]
     @project = current_user.projects.create(project_params)
     respond_to do |format|
       if @project.errors.blank?
-        format.html { redirect_to root_path, flash[:success] = "Project created!" }
+        flash[:success] = "Project created!"
+        format.html { redirect_to root_path }
         format.js
       else
-        format.html { render root_path, flash.now[:danger] = "Incorrect input" }
+        flash.now[:danger] = "Incorrect input"
+        format.html { redirect_to root_path }
       end
     end
   end
