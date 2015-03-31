@@ -7,7 +7,6 @@ gem 'rails', '4.2.0'
 gem 'sqlite3'
 # UI
 gem 'bootstrap-sass', '~> 3.3.3'
-gem 'bootstrap-datepicker-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'font-awesome-rails'
 gem 'jquery-ui-sass-rails'
@@ -23,7 +22,6 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # Authentication
 gem 'devise'
-gem 'simple_form'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 

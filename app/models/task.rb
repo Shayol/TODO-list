@@ -6,6 +6,6 @@ class Task < ActiveRecord::Base
 
   def deadline_formatted
     data = self.deadline.to_s
-    data[5...10]
+    data[0...10]
   end
 end

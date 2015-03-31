@@ -2,8 +2,8 @@
       <%= render partial: "project_header", locals: {project: project} %>
           <%= form_for ([project, project.tasks.build]), remote: true, html: {class: "form-inline"} do |f| %>
           <div class="row new-task">
-          <div class="col-md-1 col-md-offset-1">
-            <%= f.text_field :deadline, class: "task_deadline", "data-provide" => 'datepicker', placeholder: "YY-MM-DD" %>
+          <div class="col-md-2 col-md-offset-1">
+            <%= f.text_field :deadline, class: "task_deadline", placeholder: "MM-DD-YY" %>
           </div>
           <div class="col-md-7 new-task-input">
             <%= f.text_field :content, class: "form-control", placeholder: "Start typing here to create a task..." %>

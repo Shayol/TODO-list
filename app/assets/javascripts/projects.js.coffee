@@ -2,4 +2,4 @@
 
 jQuery ->
   $('.task_deadline').datepicker
-    dateFormat: 'yyyy-mm-dd'
+    dateFormat: 'yy-mm-dd'

@@ -1,7 +1,7 @@
       <div id="task_row_<%= task.id %>">
         <% if task.id %>
             <div class="row" >
-          <div class="col-md-1 col-md-offset-1">
+          <div class="col-md-2 col-md-offset-1">
             <%= link_to task_completed_project_task_path(project, task.id), remote:true, method: :patch do %>
               <% if task.completed == false then %>
                 <i class="fa fa-square-o" id="checkbox"></i>
