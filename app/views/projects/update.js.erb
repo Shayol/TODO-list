@@ -1,2 +1,2 @@
-$('#edit_project_<%= @project.id %>').after('<%= j render("project", project: @project) %>');
+$('#edit_project_<%= @project.id %>').after('<%= j render("project_header", project: @project) %>');
 $('#edit_project_<%= @project.id %>').remove();

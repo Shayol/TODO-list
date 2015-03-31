@@ -1,24 +1,5 @@
   <% @projects.each do |project| %>
-
-    <div class="project" id="project_<%= project.id %>">
-      <%= render partial: "project", locals: {project: project} %>
-          <%= form_for ([project, project.tasks.build]), remote: true, html: {class: "form-inline"} do |f| %>
-          <div class="row new-task">
-          <div class="col-md-1 col-md-offset-1">
-            <%= f.text_field :deadline, class: "task-deadline", placeholder: "YY-MM-DD" %>
-          </div>
-          <div class="col-md-7 new-task-input">
-            <%= f.text_field :content, class: "form-control", placeholder: "Start typing here to create a task..." %>
-          </div>
-        <div class="col-md-2">
-            <%= f.submit "Add task", class: "btn task" %>
-          <% end %>
-        </div>
-      </div>
-        <% project.tasks.each do |task| %>
-            <%= render partial: "tasks/task", locals: {project: project, task: task} %>
-        <% end %>
-    </div>
+    <%= render partial: "project", locals: {project: project} %>
     <% end %>
 
   <div class="row">
