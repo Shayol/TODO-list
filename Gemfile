@@ -3,8 +3,6 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 # UI
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'sass-rails', '~> 5.0'
@@ -29,6 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
 
+  gem 'sqlite3'
   gem 'spring'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
