@@ -19,9 +19,8 @@ $link-color: #999;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
-@import "jquery.ui.core";
-@import "jquery.ui.theme";
-@import "jquery.ui.datepicker";
+@import "bootstrap-datepicker3";
+//@import "bootstrap-datepicker3";
 
 
 body {
