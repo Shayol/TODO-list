@@ -1,2 +1,3 @@
 $('#project_row_<%= @project.id %>').hide().after('<%= j render("form", project: @project) %>');
+$('#edit_project_<%= @project.id %>').enableClientSideValidations();
 $('#project_row_<%= @project.id %>').remove();

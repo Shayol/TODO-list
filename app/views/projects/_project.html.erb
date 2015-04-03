@@ -1,9 +1,9 @@
 <div class="project" id="project_<%= project.id %>">
       <%= render partial: "project_header", locals: {project: project} %>
-          <%= form_for ([project, project.tasks.build]), remote: true, html: {class: "form-inline"} do |f| %>
+          <%= form_for ([project, project.tasks.build]), validate: true, remote: true, html: {class: "form-inline"} do |f| %>
           <div class="row new-task">
           <div class="col-md-2 col-md-offset-1">
-            <%= f.text_field :deadline, class: "task_deadline", placeholder: "MM-DD-YY" %>
+            <%= f.text_field :deadline, class: "task_deadline", placeholder: "YYYY-MM-DD" %>
           </div>
           <div class="col-md-7 new-task-input">
             <%= f.text_field :content, class: "form-control", placeholder: "Start typing here to create a task..." %>
