@@ -20,9 +20,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # Authentication
 gem 'devise'
+gem 'client_side_validations', github: 'DavyJonesLocker/client_side_validations'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
 
 
 group :development, :test do
