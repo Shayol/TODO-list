@@ -5,7 +5,7 @@ describe 'User' do
 
   it 'successfully authenticates with email' do
     sign_in (user)
-    expect(page).to have_content 'sign out'
+    expect(page).to have_content 'Sign out'
   end
 
 end
