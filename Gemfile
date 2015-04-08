@@ -30,7 +30,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'spring'
   gem 'byebug'
-  gem 'web-console', '~> 2.0'
+  gem 'pry'
 
   gem 'rspec-rails', '~> 3.0'
   gem 'shoulda-matchers', require: false

@@ -47,11 +47,11 @@ describe 'Tasks' do
 
   describe 'Priority_up', js: true do
     it 'gives task higher priority' do
-      upper_task = create!(:task, project: project) #priority_up action expects two tasks to exchange values of priorities
-      task = create!(:task, project: project, priority: 2)
+      upper_task = create(:task, project: project) #priority_up action expects two tasks to exchange values of priorities
+      task = create(:task, project: project, priority: 2)
       visit root_path
       find("#task_row_#{task.id}").find("a[href$='priority_up']").click
-      visit root_path
+      task.reload
       expect(task.priority).to eq 1
     end
   end
